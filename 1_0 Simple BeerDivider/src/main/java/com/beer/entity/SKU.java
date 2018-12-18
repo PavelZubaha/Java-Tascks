@@ -1,5 +1,8 @@
 package com.beer.entity;
 
+/**
+ * Class SKU represents Simple Key Unit.
+ */
 public class SKU implements Comparable<SKU> {
     private String name;
     private int cellX2;
@@ -32,11 +35,8 @@ public class SKU implements Comparable<SKU> {
 
     @Override
     public String toString() {
-        return "SKU[" +
-                "name='" + name + '\'' +
-                ", cell=" + ((float) cellX2) / 2 +
-                ", quantity=" + quantity +
-                ']';
+        return String.format("sku[name=\'%s\', cell=%.1f, quantity=%d]", name, (float) cellX2 / 2, quantity);
+
     }
 
     @Override
