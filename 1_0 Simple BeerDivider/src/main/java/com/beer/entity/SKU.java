@@ -5,12 +5,12 @@ package com.beer.entity;
  */
 public class SKU implements Comparable<SKU> {
     private String name;
-    private int cellX2;
+    private double cell;
     private int quantity;
 
-    public SKU(String name, float cell, int quantity) {
+    public SKU(String name, double cell, int quantity) {
         this.name = name;
-        this.cellX2 = Math.round(cell * 2);
+        this.cell = cell;
         this.quantity = quantity;
     }
 
@@ -18,8 +18,8 @@ public class SKU implements Comparable<SKU> {
         return name;
     }
 
-    public int getCellX2() {
-        return cellX2;
+    public double getCell() {
+        return cell;
     }
 
     public int getQuantity() {
@@ -29,18 +29,18 @@ public class SKU implements Comparable<SKU> {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    public int getSumX2() {
-        return quantity * cellX2;
+    public double getSum() {
+        return quantity * cell;
     }
 
     @Override
     public String toString() {
-        return String.format("sku[name=\'%s\', cell=%.1f, quantity=%d]", name, (float) cellX2 / 2, quantity);
+        return String.format("sku[name=\'%s\', cell=%.1f, quantity=%d]", name, cell, quantity);
 
     }
 
     @Override
     public int compareTo(SKU o) {
-        return Integer.compare(o.getCellX2(), cellX2);
+        return Double.compare(o.getCell(), cell);
     }
 }

@@ -6,40 +6,51 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 public class BoxPack {
-    private int sumX2;
-    private final int capacityX2;
+    /**
+     * Total volume(space, size) added to this BoxPack.
+     */
+    private int sum = 0;
+    /**
+     * Capacity of this BoxPack.
+     */
+    private final int capacity;
     /**
      * Type of beer with amount of it.
      */
-    private Map<String, Integer> content = new TreeMap<>(Comparator.naturalOrder());
+    private final Map<String, Long> content = new TreeMap<>(Comparator.naturalOrder());
 
     public BoxPack(int cellCapacity) {
-        this.capacityX2 = cellCapacity * 2;
+        this.capacity = cellCapacity;
     }
 
-    public boolean add(SKU sku) {
-        if (capacityX2 - sumX2 < sku.getCellX2() || sku.getSumX2() == 0) {
-            return false;
+    /**
+     * Method for adding into box SKU.
+     * Method try to take some quantity from specified SKU and put it into this box.
+     * @param sku sku for adding.
+     */
+    public void add(SKU sku) {
+        //reject case
+        if (capacity - sum < sku.getCell() || sku.getSum() == 0) {
+            return;
         }
-        int addQuantity;
-        if (capacityX2 - sumX2 > sku.getSumX2()) {
-            addQuantity = sku.getSumX2() / sku.getCellX2();
+        long addQuantity;
+        if (capacity - sum > sku.getSum()) {
+            addQuantity = Math.round(sku.getSum() / sku.getCell());
         } else {
-            addQuantity = (capacityX2 - sumX2) / sku.getSumX2();
+            addQuantity = Math.round((capacity - sum) / sku.getSum());
         }
         if (content.containsKey(sku.getName())) {
             content.replace(sku.getName(), addQuantity + content.get(sku.getName()));
         } else {
             content.put(sku.getName(), addQuantity);
         }
-        sku.setQuantity(sku.getQuantity() - addQuantity);
-        sumX2 += addQuantity * sku.getCellX2();
-        return true;
+        sku.setQuantity((int)(sku.getQuantity() - addQuantity));
+        sum += addQuantity * sku.getCell();
     }
 
     @Override
     public String toString() {
-       return String.format("%nboxPack: %d%n    content: [%s]", (capacityX2 / 2), getContentString());
+       return String.format("%nboxPack: %d%n    content: [%s]", capacity, getContentString());
     }
 
     private String getContentString() {
@@ -54,13 +65,13 @@ public class BoxPack {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BoxPack boxPack = (BoxPack) o;
-        return sumX2 == boxPack.sumX2 &&
-                capacityX2 == boxPack.capacityX2 &&
+        return sum == boxPack.sum &&
+                capacity == boxPack.capacity &&
                 Objects.equals(content, boxPack.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sumX2, capacityX2, content);
+        return Objects.hash(sum, capacity, content);
     }
 }

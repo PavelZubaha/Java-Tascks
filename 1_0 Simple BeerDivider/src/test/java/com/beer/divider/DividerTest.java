@@ -13,19 +13,19 @@ import static org.junit.Assert.assertArrayEquals;
  */
 public class DividerTest {
 
-    private Divider testedInstance;
+    private InterfaceDivider testedInstance;
     private List<SKU> testedBeerOrder;
-    private List<BoxPack> expactedList;
+    private List<BoxPack> expectedList;
 
     /**
      * Before testing get tested instances.
      */
     @org.junit.Before
     public void setUp() {
-        testedInstance = new Divider(Divider.getStandartSizesList());
-        testedBeerOrder = Collections.singletonList(new SKU("beer1", 0.5F, 1));
-        expactedList = Collections.singletonList(new BoxPack(6));
-        expactedList.get(0).add(new SKU("beer1", 0.5F, 1));
+        testedInstance = new Divider(InterfaceDivider.STANDARD_SIZES);
+        testedBeerOrder = Collections.singletonList(new SKU("beer1", 0.5, 1));
+        expectedList = Collections.singletonList(new BoxPack(6));
+        expectedList.get(0).add(new SKU("beer1", 0.5, 1));
     }
 
     /**
@@ -35,7 +35,7 @@ public class DividerTest {
      */
     @org.junit.Test
     public void divideOrder() {
-        assertArrayEquals(expactedList.toArray(),
+        assertArrayEquals(expectedList.toArray(),
                 testedInstance.divideOrder(testedBeerOrder).toArray());
     }
 }

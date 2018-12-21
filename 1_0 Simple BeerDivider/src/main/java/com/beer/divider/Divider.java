@@ -4,15 +4,13 @@ import com.beer.entity.BoxPack;
 import com.beer.entity.SKU;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Class represents simple solution on Beer Divide Task.
  */
-public class Divider {
-
+public class Divider implements InterfaceDivider {
     private List<Integer> boxSizes;
 
     /**
@@ -25,51 +23,86 @@ public class Divider {
         Collections.reverse(boxSizes);
     }
 
-    public static List<Integer> getStandartSizesList() {
-        List<Integer> sizes = new ArrayList<>(Arrays.asList(6, 8, 10, 12, 16, 25));
-        return sizes;
+    public Divider() {
+        this(InterfaceDivider.STANDARD_SIZES);
     }
 
-    /**
-     * Method for dividing order to the boxes, with optimal value.
-     * @param beer list of Simple Keeping Unit.
-     * @return List of BoxPacks.
-     */
     public List<BoxPack> divideOrder(List<SKU> beer) {
-        beer.sort(SKU::compareTo); //sorts sku's - first will bee with max cell last with smaller.
-        int[] totalCelsX2 = {0}; //for lymbda accept needs to create unmutable such as array.
-        beer.forEach((sku) -> totalCelsX2[0] += sku.getSumX2()); //get sum of List of SKU, save to array[0]
-        List<BoxPack> boxes = new ArrayList<>(); //creat result List
-        getSizesList(totalCelsX2[0]).forEach((i) -> boxes.add(new BoxPack(i))); //fill result list with BoxPack
-        boxes.forEach(boxPack -> beer.forEach(boxPack::add)); //Transfer from each SKU from bear to result list.
+        //sorts sku's from max to min value (see SKU.compareTo(SKU)).
+        beer.sort(SKU::compareTo);
+        //get sum of List of SKUs
+        double sum = beer.stream().mapToDouble(SKU::getSum).sum();
+        //creat result List
+        List<BoxPack> boxes = new ArrayList<>();
+        //fill result list with BoxPack
+        //for each from returned by getSizesList creating new BoxPack.
+        getSizesList(sum, getMinCellFromOrder(beer)).forEach((i) -> boxes.add(new BoxPack(i)));
+        //Transfer from each SKU from bear list to result list of boxes.
+        boxes.forEach(boxPack -> beer.forEach(boxPack::add));
         return boxes;
     }
 
     /**
+     * Get minimum cell value from order list.
+     * @param beer order(list of sku's)
+     * @return min cell.
+     */
+    private double getMinCellFromOrder(List<SKU> beer) {
+        double minCell = 1;
+        for(SKU s : beer) {
+            if (s.getCell() == 0.5D) {
+                minCell = 0.5D;
+                break;
+            }
+        }
+        return minCell;
+    }
+
+    /**
      * Method generate list of needed sizes.
-     * @param needsX2 you need specify needed amount * 2;
+     * @param requiredSpace you need specify needed space;
+     * @param minCell - min cell value of order.
      * @return list of sizes.
      */
-    private List<Integer> getSizesList(int needsX2) {
-//        System.out.println("VOLUME NEED: " + ((float) needsX2) / 2);
+    private List<Integer> getSizesList(double requiredSpace, double minCell) {
+//      System.out.println("VOLUME NEED: " + ((float) t) / 2);
         List<Integer> result = new ArrayList<>();
+        //As boxSizes has sorted, we have min size - last element of list.
         int MIN_SIZE = boxSizes.get(boxSizes.size() - 1);
-        int emptyPlaysX2 = 0;
-        while (needsX2 > 0) {
-            for (int i = 0, sizeX2; i < boxSizes.size() && needsX2 > 0; i++) {
-                sizeX2 = boxSizes.get(i) * 2;
-                if (needsX2 + emptyPlaysX2 - sizeX2 >= MIN_SIZE * 2
-                        || sizeX2 - emptyPlaysX2 - needsX2 <= 3
-                        && sizeX2 - needsX2 - emptyPlaysX2 >= 0) {
-//                    System.out.printf("   size: %d, left: %.1f%n", Math.round(sizeX2 / 2), ((float) needsX2) / 2);
-                    result.add(Math.round(sizeX2 / 2));
-                    needsX2 -= (sizeX2);
-                    emptyPlaysX2 = 0;
+        // check if the box is suitable in cycle.
+        // for different(0, 1...) sizes of empty space.
+        for (double emptySpace = 0; requiredSpace > 0; emptySpace+=minCell) {
+            //check in cycle each size of box.
+            for (int i = 0, size; i < boxSizes.size(); i++) {
+                size = boxSizes.get(i);
+                //check condition as trigger.
+                if (condition(requiredSpace, MIN_SIZE, emptySpace, size)) {
+                    //when condition true add current checking size to result list
+                    result.add(size);
+                    requiredSpace -= size;
+                    //if size is suitable check this size one more time
                     i = i - 1;
+                    //after adding before checking should reset emptySpace
+                    emptySpace = 0;
                 }
             }
-            emptyPlaysX2 += 1;
         }
         return result;
+    }
+
+    private boolean condition(double requiredSpace, int MIN_SIZE, double emptySpace, int size) {
+        return requiredSpace + emptySpace - size >= MIN_SIZE
+                || size - emptySpace - requiredSpace <= 1.5
+                && size - requiredSpace >= 0;
+    }
+    /**
+     * Method show in console example of getListSizeWorks with different required space.
+     */
+    public static void showGetListSizeWork() {
+        InterfaceDivider divider = new Divider();
+        for (double i = 0; i < 76; i+=0.5) {
+            //we specify different required space(total order volume)
+            System.out.println(i + " - " + ((Divider) divider).getSizesList(i, 0.5));
+        }
     }
 }
