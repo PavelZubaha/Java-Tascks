@@ -23,6 +23,10 @@
     <bean id="yogaCoach" class="com.pzubaha.springdemo.YogaCoach">
 
         <!--Inject dependency through setter-->
+        <!--if used ref, you sould provide another bean-->
+        <!--if used value, you sould provide some literal-->
         <property name="fortuneService" ref="myFortuneService"/>
+        <property name="email" value="heavens@indralock.out"/>
+        <property name="sity" value="Indralocka!" />
     </bean>
 </beans>

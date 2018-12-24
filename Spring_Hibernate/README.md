@@ -36,7 +36,12 @@
     <a href ="">DI:XML Configuration<a></strong>
     <ol>
         <li>Create constructor in the class.</li>
-        <li>Configure DI in the spring cfg file.</li>
+        <li>Configure DI in the spring cfg file:
+         <ol type>
+            <li>Otherbean DI: property ref = "bean_id"</li>
+            <li>someValue DI: property value = "someValue"</li>
+         </ol>
+         </li>
         </ol>
     </li>
     <li>

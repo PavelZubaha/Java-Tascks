@@ -2,6 +2,7 @@ package com.pzubaha.springdemo;
 
 public class JavaCoach implements Coach {
 
+
     //define private for dependency
     private FortuneService fortuneService;
 
