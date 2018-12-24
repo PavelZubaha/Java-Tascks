@@ -16,6 +16,13 @@ public class HelloSpringApp {
 
         System.out.println(coach.getDailyWorkout());
 
+        //create new class Yoga coach
+        //instantiate it, set dependency in applicationContext.xml
+        Coach yogaCoach = context.getBean("yogaCoach", Coach.class);
+
+        //use new instance
+        System.out.println(yogaCoach.getDailyWorkout());
+        System.out.println(yogaCoach.getDailyFortune());
 
         //close context
         context.close();

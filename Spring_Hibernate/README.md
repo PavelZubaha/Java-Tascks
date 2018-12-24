@@ -1,16 +1,18 @@
 <h2>Spring and Hibernate step by step.</h2>
 
-<p>
-Follow the commits, step by step.
-</p>
+
 <ol>
     <li>
-    Add spring jar's to classpath.
+    <h4>
+    Follow the commits, step by step*.
+    </h4>
+    Create simple java project.<br>
+    *Add spring jar's to classpath.
     For example you can download it from: 
     http://repo.spring.io/release/org/springframework/spring/
     or use maven.
     </li>
-    <li> Learn principles:
+    <li>    <h4> Learn principles:    </h4>
     <ol type ="1">
     <li>Inversion of Control - approach in programming when 
      creating(Object Factory) and managing objects by Spring Container.</li>
@@ -28,13 +30,23 @@ Follow the commits, step by step.
     </ol>
     </li>
     <li>
-    Dependency injection can be provided by:
+    <h4><strong>Dependency injection</strong> can be provided by:</h4>
     <ol>
-    <li>Constructor injection
+    <li><strong>Constructor injection
+    <a href ="">DI:XML Configuration<a></strong>
+    <ol>
+        <li>Create constructor in the class.</li>
+        <li>Configure DI in the spring cfg file.</li>
+        </ol>
     </li>
     <li>
-    Setter injection</li>
-    <li>Auto-wiring annotation</li>
+    <strong>Setter injection.</strong> - injection dependency calling setter.
+    <ol>
+    <li>Create setter method in the class.</li>
+    <li>Configure DI in the spring cfg file.</li>
+    </ol>
+    </li>
+    <li><strong>Auto-wiring annotation</strong>:</li>
     </ol>
     </li>
 </ol>

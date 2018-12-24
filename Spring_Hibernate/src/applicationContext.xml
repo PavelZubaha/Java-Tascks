@@ -13,9 +13,16 @@
     </bean>
 
     <!--Define the dependency-->
-    <bean id="coach" class="com.pzubaha.springdemo.JavaCoach">
+    <bean id="coach" class="com.pzubaha.springdemo.TrackCoach">
 
         <!--Inject through constructor-->
         <constructor-arg ref="myFortuneService"/>
+    </bean>
+
+    <!--Define new bean with-->
+    <bean id="yogaCoach" class="com.pzubaha.springdemo.YogaCoach">
+
+        <!--Inject dependency through setter-->
+        <property name="fortuneService" ref="myFortuneService"/>
     </bean>
 </beans>
