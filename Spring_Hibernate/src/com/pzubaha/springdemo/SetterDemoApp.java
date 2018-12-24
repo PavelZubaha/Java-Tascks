@@ -13,5 +13,6 @@ public class SetterDemoApp {
         System.out.println(coach.getDailyFortune());
         System.out.println("Send me mail to:" + coach.getEmail());
         System.out.println("Or visit me on: " + coach.getCity());
+        cpxac.close();
     }
 }
