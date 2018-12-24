@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--load the properties file: sport.properties-->
+    <context:property-placeholder location="classpath:sport.properties"/>
 
     <bean id="myLoggerConfig" class="com.pzubaha.logger.MyLoggerConfig" init-method="initLogger">
         <property name="rootLoggerLevel" value="INFO" />
@@ -26,7 +32,9 @@
         <!--if used ref, you sould provide another bean-->
         <!--if used value, you sould provide some literal-->
         <property name="fortuneService" ref="myFortuneService"/>
-        <property name="email" value="heavens@indralock.out"/>
-        <property name="sity" value="Indralocka!" />
+
+        <!--use ${reference} for reference to property file-->
+        <property name="email" value="${foo.email}"/>
+        <property name="sity" value="${foo.city}" />
     </bean>
 </beans>
