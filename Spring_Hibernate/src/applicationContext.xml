@@ -15,7 +15,7 @@
         <property name="printedLoggerLevel" value="INFO"/>
     </bean>
 
-    <bean id="myFortuneService" class="com.pzubaha.springdemo.HappyFortuneService">
+    <bean id="myFortuneService" class="com.pzubaha.springdemo.RandomFortuneService">
     </bean>
 
     <!--Define the dependency-->
@@ -35,6 +35,6 @@
 
         <!--use ${reference} for reference to property file-->
         <property name="email" value="${foo.email}"/>
-        <property name="sity" value="${foo.city}" />
+        <property name="city" value="${foo.city}" />
     </bean>
 </beans>

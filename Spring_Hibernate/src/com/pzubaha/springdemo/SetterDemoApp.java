@@ -8,8 +8,10 @@ public class SetterDemoApp {
         YogaCoach coach = cpxac.getBean("yogaCoach", YogaCoach.class);
         System.out.println(coach.getDailyWorkout());
         System.out.println(coach.getDailyFortune());
+        System.out.println(coach.getDailyFortune());
+        System.out.println(coach.getDailyFortune());
+        System.out.println(coach.getDailyFortune());
         System.out.println("Send me mail to:" + coach.getEmail());
-        System.out.println("Or visit me on: " + coach.getSity());
-
+        System.out.println("Or visit me on: " + coach.getCity());
     }
 }

@@ -48,8 +48,11 @@
     <ol>
                 <li>Otherbean DI: property ref = "bean_id"</li>
                 <li>someValue DI: property value = "someValue"</li>
-                <li>Using .propery file. Create, load file.
-                
+                <li>Using .propery file. 
+                <br>Create property file.
+                <br>Load file:
+<code>&lt;context:property-placeholder location="classpath:sport.properties"/&gt;</code><br>
+<code>&lt;property name="city" value="${foo.city}" /&gt;</code>
                 </li>
     </ol>
     </ol>

@@ -5,7 +5,7 @@ public class YogaCoach implements Coach {
     private String email;
 
     //define another field
-    private String sity;
+    private String city;
 
     private FortuneService fortuneService;
 
@@ -33,14 +33,14 @@ public class YogaCoach implements Coach {
     }
 
     //create setter for injection
-    public void setSity(String sity) {
-        System.out.println("Java coach: set city! " + sity);
-        this.sity = sity;
+    public void setCity(String city) {
+        System.out.println("Java coach: set city! " + city);
+        this.city = city;
     }
 
-    public String getSity() {
+    public String getCity() {
         System.out.println("");
-        return sity;
+        return city;
     }
 
     public String getEmail() {
