@@ -1,13 +1,13 @@
 <h3>Spring configuration with annotations - IoC</h3>
 <ol>
-    <li><h4>Explicit/Default Component names</h4>
+    <li><strong><i>Explicit/Default Component names</i></strong><br>
         - enable component scan in cfg file, specify the package.<br>
         - annotate needed class 
         <code>@Component("Bean_ID")</code><br>
         - if you do not specify Bean_ID,<br>
-        id will be name of class starts with lowercase.
+        id will be name of class starts with lowercase.<br><br>
     </li>
-    <li><h4>DI with annotations. Autowiring.</h4>
+    <li><strong><i>DI with annotations. Autowiring.</i></strong>
         <ul>
             <li>For DI Spring scans package for classes according to type.
                         Sould be annotated: <code>@Component</code>.<br>
@@ -28,9 +28,15 @@
                         <a href=https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-autowired-annotation>reference</a>
             </li>
             <li>Also you can execute any method(that requred component) through @Autowired<br></li>
+            <li>Autowired directy on the field<br>
+            Spring could autowire field through reflection(even privat field, without setter) </li>
         </ul>
     </li>
-    <li></li>
+    <li>
+        <strong><i>Which type of injection should be used ?</i></strong><br>
+        <article>There are not strict low, but best practice is to use single approch throughout project
+        </article>
+    </li>
 </ol>
 
 
