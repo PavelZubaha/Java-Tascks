@@ -102,6 +102,13 @@
         Method name - any
         Arguments - without args.
     </li>
+    <li>
+        <h4>Configuration with java annotations IoC<h4>
+        <ol>
+            <li>Spring scan classes, find special annotations<br>
+             add it as a bean.</li>
+        </ol>
+    </li>
 </ol>
 
 
