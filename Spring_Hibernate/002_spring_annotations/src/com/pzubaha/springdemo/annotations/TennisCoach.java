@@ -8,9 +8,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class TennisCoach implements Coach {
     private FortuneService fortuneService;
-
+/*
     @Autowired
     public TennisCoach(FortuneService fortuneService) {
+        this.fortuneService = fortuneService;
+    }
+*/
+
+    // Add default constructor.
+    // Just for my own benefits, for tracing
+    public TennisCoach() {
+        System.out.println("Tenis Coach default constructor");
+    }
+
+    //add setter
+    //Tell spring that should autowired dependency through this setter.
+    //add some diagnostic message
+    @Autowired
+    public void setFortuneService(FortuneService fortuneService) {
+        System.out.println("TennisCoach << FortuneService SET!");
         this.fortuneService = fortuneService;
     }
 
