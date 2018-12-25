@@ -8,11 +8,20 @@ public class AnnotationDemoApp {
         //read spring cfg file
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        //get bean from spring container
+        //get beans from spring container
         Coach coach = context.getBean("tennisCoach", Coach.class);
+        Coach springCoach = context.getBean("springCoach", Coach.class);
 
         //use returned bean
         System.out.println(coach.getDailyWorkout());
+        System.out.println(springCoach.getDailyWorkout());
+
+        //use new method that needs autowired FortuneService's
+        System.out.println(coach.getDailyFortune());
+        System.out.println(springCoach.getDailyFortune());
+
+        //difference
+        System.out.println("coach == springCoach " + (coach == springCoach));
 
         //close container
         context.close();
