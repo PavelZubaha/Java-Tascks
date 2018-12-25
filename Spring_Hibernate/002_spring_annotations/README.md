@@ -1,13 +1,13 @@
 <h3>Spring configuration with annotations - IoC</h3>
 <ol>
-    <li><strong><i>Explicit/Default Component names</i></strong><br>
+    <li><p><strong><i>Explicit/Default Component names</i></strong><br>
         - enable component scan in cfg file, specify the package.<br>
         - annotate needed class 
         <code>@Component("Bean_ID")</code><br>
         - if you do not specify Bean_ID,<br>
-        id will be name of class starts with lowercase.<br><br>
+        id will be name of class starts with lowercase.</p>
     </li>
-    <li><strong><i>DI with annotations. Autowiring.</i></strong>
+    <li><p><strong><i>DI with annotations. Autowiring.</i></strong>
         <ul>
             <li>For DI Spring scans package for classes according to type.
                         Sould be annotated: <code>@Component</code>.<br>
@@ -30,12 +30,22 @@
             <li>Also you can execute any method(that requred component) through @Autowired<br></li>
             <li>Autowired directy on the field<br>
             Spring could autowire field through reflection(even privat field, without setter) </li>
-        </ul>
+        </ul></p>
     </li>
     <li>
-        <strong><i>Which type of injection should be used ?</i></strong><br>
+        <p><strong><i>Which type of injection should be used ?</i></strong><br></p>
         <article>There are not strict low, but best practice is to use single approch throughout project
         </article>
+    </li>
+    <li><strong><i><p>Qulifier annotations for DI</i></strong></p>
+        <p>If we annotate <code>@Autowired</code>postion where requires some interface,<br>
+         but in container there are many implimentations of it could be thrown 
+         <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/NoUniqueBeanDefinitionException.html">
+         NoUniqueBeanDefinationException</a>. It can be resolved by:
+         <code><a href =https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-scanning-qualifiers>
+         @Qualifier("Desire_bean_id")
+         </a></code><br>
+         Qualifier can be applied on: constructor, setter, field</p>
     </li>
 </ol>
 

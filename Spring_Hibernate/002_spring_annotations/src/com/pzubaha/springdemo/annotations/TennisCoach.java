@@ -1,20 +1,22 @@
 package com.pzubaha.springdemo.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 //use annotation Component
 @Component
 public class TennisCoach implements Coach {
+
     @Autowired
+    @Qualifier("randomFortuneService")
     private FortuneService fortuneService;
-/*
-    @Autowired
-    public TennisCoach(FortuneService fortuneService) {
-        this.fortuneService = fortuneService;
-    }
-*/
+
+//    public TennisCoach(FortuneService fortuneService) {
+//        this.fortuneService = fortuneService;
+//    }
+
 
     // Add default constructor.
     // Just for my own benefits, for tracing
