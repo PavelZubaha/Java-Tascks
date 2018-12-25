@@ -25,12 +25,21 @@
           init-method="init"
           destroy-method="destroy">
         <!--Inject dependency through setter-->
-        <!--if used ref, you sould provide another bean-->
-        <!--if used value, you sould provide some literal-->
+        <!--if used ref, you should provide another bean-->
+        <!--if used value, you should provide some literal-->
         <property name="fortuneService" ref="myFortuneService"/>
 
         <!--use ${reference} for reference to property file-->
         <property name="email" value="${foo.email}"/>
         <property name="city" value="${foo.city}"/>
+    </bean>
+    <bean id="prototypeYogaCoach"
+    class="com.pzubaha.springdemo.YogaCoach"
+    init-method="init"
+    destroy-method="destroy"
+    scope="prototype">
+        <property name="fortuneService" ref="myFortuneService"/>
+        <property name="email" value="prototype.coach@mail.com"/>
+        <property name="city" value="prototype.city.value"/>
     </bean>
 </beans>

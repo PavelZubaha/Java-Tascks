@@ -86,6 +86,14 @@
             <li>Bean is ready for use</li>
             <li>Container shutdown</li>
             <li>Custom destroy-method</li>
+            <li><i color = "green">For "prototype" scoped beans,<br>
+             Spring does not call the destroy method. <br>
+             In contrast to the other scopes, Spring does not manage <br>
+             the complete lifecycle of a prototype bean:<br>
+             the container instantiates, configures,<br>
+             and otherwise assembles a prototype object,<br>
+             and hands it to the client, with no further record of that prototype instance.<br>
+             Clien itself must release resources that prototype bean holds</i></li>
         </ol>
         <code>init-method="init_method_name"<br>
         destroy-method="destroy_method_name"</code><br>
