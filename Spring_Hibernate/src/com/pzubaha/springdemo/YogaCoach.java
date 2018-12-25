@@ -13,6 +13,13 @@ public class YogaCoach implements Coach {
         System.out.println("Yoga coach: no-argument constructor!");
     }
 
+    public void init() {
+        System.out.println("Yoga Coach init method!");
+    }
+    public void destroy() {
+        System.out.println("Yoga Coach: destroy!");
+    }
+
     public void setFortuneService(FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
@@ -39,7 +46,7 @@ public class YogaCoach implements Coach {
     }
 
     public String getCity() {
-        System.out.println("");
+        System.out.println("getter city");
         return city;
     }
 

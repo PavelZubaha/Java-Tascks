@@ -76,6 +76,24 @@
             </li>
         </ol>
     </li>
+    <li>
+        <h4>Lifecycle of beans:</h4><br>
+        <ol>
+            <li>Instantiated</li>
+            <li>Dependency injected</li>
+            <li>Internal Spring Processing</li>
+            <li>Custom init-method</li>
+            <li>Bean is ready for use</li>
+            <li>Container shutdown</li>
+            <li>Custom destroy-method</li>
+        </ol>
+        <code>init-method="init_method_name"<br>
+        destroy-method="destroy_method_name"</code><br>
+        Access modifier - any(private, package-private, public, default)<br>
+        Return type - any(commonly void)
+        Method name - any
+        Arguments - without args.
+    </li>
 </ol>
 
 

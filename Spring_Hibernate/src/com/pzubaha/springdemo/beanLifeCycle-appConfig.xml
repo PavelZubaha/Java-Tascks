@@ -18,13 +18,6 @@
     <bean id="myFortuneService" class="com.pzubaha.springdemo.RandomFortuneService">
     </bean>
 
-    <!--Define the dependency-->
-    <bean id="coach" class="com.pzubaha.springdemo.TrackCoach">
-
-        <!--Inject through constructor-->
-        <constructor-arg ref="myFortuneService"/>
-    </bean>
-
     <!--Define new bean with-->
     <!--init method will be called after constructor-->
     <bean id="yogaCoach"
