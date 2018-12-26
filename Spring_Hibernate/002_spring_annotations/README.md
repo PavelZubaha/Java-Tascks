@@ -75,4 +75,12 @@
             </ol>
         </p>
     </li>
+    <li>
+        <p><strong><i>@PostConstruct and @PreDestroy</i></strong></p>
+        <p>If you want to provide some operations after constraction/before destroy<br>
+        you should annotate corresponding method.</p>
+        <p>When using Java 9 and higher,
+         javax.annotation has been removed from its default classpath. You should provide it for example:<br>
+         http://central.maven.org/maven2/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar</p>
+    </li>
 </ol>

@@ -13,8 +13,10 @@ public class TennisCoach implements Coach {
     @Value("${coach.tennis.name}")
     private String name;
 
+    //change bean to another impl of fortune service
+    //which should load array of fortunes from file.
     @Autowired
-    @Qualifier("randomFortuneService")
+    @Qualifier("fileStoredFortuneService")
     private FortuneService fortuneService;
 
 //    public TennisCoach(FortuneService fortuneService) {
