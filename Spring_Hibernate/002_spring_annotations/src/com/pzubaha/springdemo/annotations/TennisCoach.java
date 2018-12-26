@@ -2,12 +2,16 @@ package com.pzubaha.springdemo.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
 //use annotation Component
 @Component
 public class TennisCoach implements Coach {
+
+    @Value("${coach.tennis.name}")
+    private String name;
 
     @Autowired
     @Qualifier("randomFortuneService")
@@ -47,5 +51,10 @@ public class TennisCoach implements Coach {
     @Override
     public String getDailyFortune() {
         return "Tennis Coach: " + fortuneService.getFortune();
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

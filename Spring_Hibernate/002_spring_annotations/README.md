@@ -38,6 +38,7 @@
         </article>
     </li>
     <li><strong><i><p>Qulifier annotations for DI</i></strong></p>
+        <p></p>
         <p>If we annotate <code>@Autowired</code>postion where requires some interface,<br>
          but in container there are many implimentations of it could be thrown 
          <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/NoUniqueBeanDefinitionException.html">
@@ -47,6 +48,31 @@
          </a></code><br>
          Qualifier can be applied on: constructor, setter, field</p>
     </li>
+    <li><p>If the annotation's value doesn't indicate a bean name,
+                an appropriate name will be built<br>
+                based on the short name of the class (with the first letter lower-cased).</p>
+        <p>For example: HappyFortuneService --> happyFortuneService
+                <br>However, for the special case of when BOTH the first and second characters of the class name are upper case,<br>
+                then the name is NOT converted. For the case of RESTFortuneService:
+                RESTFortuneService --> RESTFortuneService<br>
+                Thus "FooBah" becomes "fooBah" and "X" becomes "x", but "URL" stays as "URL".</p>
+    </li>
+    <li><strong><i>Syntax of autowiring constructor a little different:</strong></i>
+    <p><code>@Autowired
+                public TennisCoach(@Qualifier("randomFortuneService") FortuneService theFortuneService) {
+    </code>
+    </p>
+    </li>
+    <li>
+        <strong><i>Properties injection using annotations</i></strong>
+        <p> For example:
+            <ol>
+                <li>Add to config < context:property-placeholder location="classpath:sport.properties"/ >
+                </li>
+                <li>Create sport.property</li>
+                <li>Inject the properties value into the Coach using annotation
+                <code>@Value("${}")</code></li>
+            </ol>
+        </p>
+    </li>
 </ol>
-
-

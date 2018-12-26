@@ -23,6 +23,9 @@ public class AnnotationDemoApp {
         //difference
         System.out.println("coach == springCoach " + (coach == springCoach));
 
+        //retrieve name's and use
+        System.out.println(coach.getName() + " just meet friend " + springCoach.getName());
+
         //close container
         context.close();
     }
