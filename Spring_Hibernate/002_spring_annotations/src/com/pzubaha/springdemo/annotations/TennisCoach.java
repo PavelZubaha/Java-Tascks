@@ -3,15 +3,26 @@ package com.pzubaha.springdemo.annotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 
 //use annotation Component
 @Component
+@Scope("prototype")
 public class TennisCoach implements Coach {
 
     @Value("${coach.tennis.name}")
     private String name;
+
+    @PostConstruct
+    private void init() {
+        //
+        System.out.println("Tennis coach: inside init() @PostConstruct");
+    }
 
     //change bean to another impl of fortune service
     //which should load array of fortunes from file.
@@ -58,5 +69,12 @@ public class TennisCoach implements Coach {
     @Override
     public String getName() {
         return name;
+    }
+
+    // when we use prototype scope
+    // pre destroy will not be called by Spring
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("Tennis coach: inside pre destroy method!");
     }
 }

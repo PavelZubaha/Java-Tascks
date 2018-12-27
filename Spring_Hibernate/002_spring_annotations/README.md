@@ -83,4 +83,29 @@
          javax.annotation has been removed from its default classpath. You should provide it for example:<br>
          http://central.maven.org/maven2/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar</p>
     </li>
+    <li>
+        <p><strong><i>@Scope("singleton"/"prototype") </i></strong></p>
+        <p>If the scope is prototype pre destroy method will not be called.</p>
+        <i><p>Special Note about @PostConstruct and @PreDestroy Method Signatures</p>
+        <br>
+        <h5>Access modifier</h5>
+        <br>
+        <p>The method can have any access modifier (public, protected, private)</p>
+        <br>
+        <h5>Return type</h5>
+        <p>The method can have any return type.</p>
+        <p>However, "void' is most commonly used. If you give a return type just note that you will not be able to capture the return value.</p>
+        <p>As a result, "void" is commonly used.</p>
+        <br>
+        <h5>Method name</h5>
+        <p>The method can have any method name.</p>
+        <br>
+        <h5>Arguments</h5>
+        <p>The method can not accept any arguments. The method should be no-arg.<br>
+         The client code must clean up prototype-scoped objects and release expensive resources that the prototype bean(s) are holding. </p></i>
+        <br>
+        <p>To get Spring container to release resources, held by prototype-scoped try using a custom 
+        <a href=https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-extension-bpp>bean post-processor</a></p>
+        <p>You sould provide javax.annotation-api Jar for Java 9, 10, 11</p>
+    </li>
 </ol>
