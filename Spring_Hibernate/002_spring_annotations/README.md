@@ -108,4 +108,14 @@
         <a href=https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-extension-bpp>bean post-processor</a></p>
         <p>You sould provide javax.annotation-api Jar for Java 9, 10, 11</p>
     </li>
+    <li>
+        <p><strong><i>Configuration with Java Code</i></strong></p>
+        <p>First you should create a class annotated as <code>@Configuaration</code></p>
+        <p>Optional you can add scannig support throught annotating Configuration class whith <code>@ComponentScan("package_name")</code> </p>
+        <p>Read Spring config in main class throught calling: <br>
+        AnnotationConfigAppcitaionContext(Config_name.class)</p>
+        <p>Retrive beans from container</p>
+        <p>In Config_name class you should annotate method that returns needed bean</p>
+        <p>Spring intercept the calling of method and create a bean</p>
+    </li>
 </ol>

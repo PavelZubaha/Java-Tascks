@@ -19,6 +19,7 @@ public class FileStoredFortuneService implements FortuneService {
 
   @PostConstruct
   public void init() {
+    System.out.println("Init (@PostConstruct) File stored fortune service");
     try {
       fortunes = Files.readAllLines(path);
     } catch (IOException e) {
