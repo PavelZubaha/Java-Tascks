@@ -108,14 +108,43 @@
         <a href=https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-extension-bpp>bean post-processor</a></p>
         <p>You sould provide javax.annotation-api Jar for Java 9, 10, 11</p>
     </li>
+    
+</ol>
+<h3>Configuration with Java Code</h3>
+<ol>
     <li>
         <p><strong><i>Configuration with Java Code</i></strong></p>
         <p>First you should create a class annotated as <code>@Configuaration</code></p>
         <p>Optional you can add scannig support throught annotating Configuration class whith <code>@ComponentScan("package_name")</code> </p>
         <p>Read Spring config in main class throught calling: <br>
-        AnnotationConfigAppcitaionContext(Config_name.class)</p>
-        <p>Retrive beans from container</p>
-        <p>In Config_name class you should annotate method that returns needed bean</p>
-        <p>Spring intercept the calling of method and create a bean</p>
+            AnnotationConfigAppcitaionContext(Config_name.class)</p>
+         <p>Retrive beans from container</p>
+         <p>In Config_name class you should annotate method that returns needed bean</p>
+         <p>Spring intercept the calling of method and create a bean</p>
+    </li>
+    <li>
+        <p><strong><i>Inject Values from property file</i></strong></p>
+        <ol>
+            <li>Create property file (see sport.properties)</li>
+            <li>Load property file using <code>@PropertySource("path")<Code> on Config_name class</li>
+            <li>Annotate fields of the bean class(in this case SwimCoach class) with @Value("${key.value}") </li>
+        </ol>
+    </li>
+    <li>
+        <p><strong><i>Change logging level Spring 5</i></strong></p>
+        <ol>
+            <li>Create a logging properties file: 
+                <p><code>src/mylogger.properties<br>
+                   root.logger.level=FINE<br>
+                   printed.logger.level=FINE</code></p>
+            <li>
+            <li>Create a configuration class to configure the parent logger and console handler:
+                <p>see: com.pzubaha.springdemo.annotations.LoggerConfig.java</p>
+            <li>
+            <li>Reference the configuration class in the main app
+                <p>AnnotationConfigApplicationContext context = <br>
+                   				new AnnotationConfigApplicationContext(MyLoggerConfig.class, SportConfig.class);</p>
+            <li>
+        </ol>
     </li>
 </ol>

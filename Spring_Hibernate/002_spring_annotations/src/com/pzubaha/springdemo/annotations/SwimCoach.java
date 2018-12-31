@@ -1,13 +1,22 @@
 package com.pzubaha.springdemo.annotations;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class SwimCoach implements Coach {
 
   private FortuneService fortuneService;
 
-  private String name;
-
   public SwimCoach(FortuneService fortuneService) {
     this.fortuneService = fortuneService;
+  }
+
+
+//  @Value("${coach.swim.name}")
+  private String name;
+
+  public SwimCoach(FortuneService sadFortuneService, String name) {
+    this.fortuneService = sadFortuneService;
+    this.name = name;
   }
 
   @Override
